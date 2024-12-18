@@ -1,6 +1,12 @@
-'use client'
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import {  User  } from '@supabase/supabase-js';
+'use client';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react';
+import { User } from '@supabase/supabase-js';
 import { supabase } from '../services/supabase';
 
 type AuthContextType = {
@@ -39,7 +45,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
     if (error) throw error;
   };
 

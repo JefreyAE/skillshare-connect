@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useState } from 'react';
 import { supabase } from '../../../services/supabase';
 import { useAuth } from '../../../context/AuthContext';
@@ -25,7 +25,7 @@ export default function Page() {
 
       // Guardar perfil en la base de datos
       console.log(data.user?.id);
-      
+
       const { error: profileError } = await supabase
         .from('profiles')
         .insert([{ id: data.user?.id, email: data.user?.email }]);
@@ -43,7 +43,10 @@ export default function Page() {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <form onSubmit={handleSignup} className="bg-white p-8 rounded shadow-md w-96">
+      <form
+        onSubmit={handleSignup}
+        className="bg-white p-8 rounded shadow-md w-96"
+      >
         <h1 className="text-2xl font-bold mb-6">Crear una cuenta</h1>
 
         <label className="block mb-2">Correo electrónico</label>

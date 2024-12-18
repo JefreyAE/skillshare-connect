@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
@@ -13,7 +13,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/');  // Redirige si no está autenticado
+      router.push('/'); // Redirige si no está autenticado
     }
   }, [user, loading, router]);
 

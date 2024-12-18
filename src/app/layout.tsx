@@ -8,11 +8,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">  
+    <html lang="es">
       <body>
-        <AuthProvider>
-          {children} 
-        </AuthProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 import { useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
-import '../../../styles/globals.css'
-import { useRouter } from 'next/navigation'
+import '../../../styles/globals.css';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
   const [email, setEmail] = useState('');
@@ -20,7 +20,7 @@ export default function Page() {
     try {
       await login(email, password);
       setMessage('¡Inicio de sesión exitoso!');
-      router.push('./dashboard')
+      router.push('./dashboard');
     } catch (error: any) {
       // Si el error tiene una propiedad 'message', la usamos. Si no, mostramos un mensaje genérico.
       const errorMessage = error?.message || 'Ocurrió un error desconocido';
@@ -32,7 +32,10 @@ export default function Page() {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md w-96">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-8 rounded shadow-md w-96"
+      >
         <h1 className="text-2xl font-bold mb-6">Iniciar sesión</h1>
 
         <label className="block mb-2">Correo electrónico</label>

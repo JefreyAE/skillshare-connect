@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 
 export default function Home() {
@@ -10,7 +9,8 @@ export default function Home() {
             Bienvenido a SkillShare Connect
           </h1>
           <p className="text-lg text-gray-600 mb-8">
-            Conéctate con profesionales, comparte tus habilidades y aprende nuevas competencias.
+            Conéctate con profesionales, comparte tus habilidades y aprende
+            nuevas competencias.
           </p>
 
           <div className="space-x-4">

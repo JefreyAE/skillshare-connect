@@ -62,7 +62,7 @@ export default function Page() {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="min-h-screen bg-gray-100 p-8">
         <div className="max-w-4xl mx-auto bg-white rounded shadow-md p-6">
           <header className="mb-8 text-center">
