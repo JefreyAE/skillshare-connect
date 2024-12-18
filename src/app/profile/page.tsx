@@ -16,8 +16,6 @@ export default function Page() {
     if (!loading && !user) {
       router.push('/login'); // Redirige si no está autenticado
     } else if (user) {
-      console.log(user);
-
       fetchUserProfile();
     }
   }, [user, loading, router]);
