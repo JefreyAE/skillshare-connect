@@ -9,9 +9,8 @@ export default function Navbar() {
     <nav className="bg-gray-800 text-white p-4">
       <div className="max-w-7xl mx-auto flex justify-between">
         <Link className="text-2xl font-bold" href="/">
-          Mi App
+          SkillShare Connect
         </Link>
-
         <div className="flex items-center">
           {user ? (
             <>
