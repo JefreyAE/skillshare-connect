@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
-
   return (
     <nav className="bg-gray-800 text-white p-4">
       <div className="max-w-7xl mx-auto flex justify-between">
@@ -16,6 +15,9 @@ export default function Navbar() {
             <>
               <Link className="mr-4" href="/dashboard">
                 Dashboard
+              </Link>
+              <Link className="mr-4 px-4 py-2" href={`/public/${user.id}`}>
+                My profile
               </Link>
               <button
                 onClick={logout}

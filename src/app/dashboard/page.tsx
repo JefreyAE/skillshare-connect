@@ -9,6 +9,7 @@ export default function Dashboard() {
   const { user, logout } = useAuth();
   const [profile, setProfile] = useState<any>(null);
   const [projects, setProjects] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProfileAndProjects = async () => {
@@ -36,6 +37,8 @@ export default function Dashboard() {
           setProjects(projectData);
         } catch (error) {
           console.error("Error fetching profile or projects:", error);
+        } finally {
+          setIsLoading(false); // Indica que la carga ha terminado
         }
       }
     };
@@ -84,7 +87,7 @@ export default function Dashboard() {
       <main className="flex-1 p-8">
         <header className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold">
-            Bienvenido, {profile?.full_name}
+            Bienvenido, {profile?.full_name || "Cargando..."}
           </h1>
           <Link
             href={"/project/create"}
@@ -95,31 +98,42 @@ export default function Dashboard() {
         </header>
 
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[calc(100vh-100px)] overflow-y-auto">
-  {projects.length > 0 ? (
-    projects.map((project) => (
-      <div
-        key={project.id}
-        className="p-6 bg-white rounded shadow-md hover:shadow-lg flex flex-col"
-      >
-        <img
-          src={`https://payusyyavlpnktpzchzw.supabase.co/storage/v1/object/public/projects/${project.image_url}`}
-          alt={project.name}
-          className="mb-4 w-full h-40 object-cover rounded"
-        />
-        <h2 className="text-xl font-bold">{project.name}</h2>
-        <p className="text-gray-600 mb-4 flex-1 overflow-hidden text-ellipsis line-clamp-3">
-          {project.description}
-        </p>
-        <button className="mt-4 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700">
-          Ver Detalles
-        </button>
-      </div>
-    ))
-  ) : (
-    <p className="text-gray-600">No tienes proyectos aún.</p>
-  )}
-</section>
-
+          {isLoading
+            ? [...Array(6)].map((_, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 bg-white rounded shadow-md animate-pulse"
+                >
+                  <div className="h-40 bg-gray-300 rounded mb-4"></div>
+                  <div className="h-6 bg-gray-300 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-300 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-300 rounded"></div>
+                </div>
+              ))
+            : projects.length > 0
+            ? projects.map((project) => (
+                <div
+                  key={project.id}
+                  className="p-6 bg-white rounded shadow-md hover:shadow-lg flex flex-col"
+                >
+                  <img
+                    src={`https://payusyyavlpnktpzchzw.supabase.co/storage/v1/object/public/projects/${project.image_url}`}
+                    alt={project.name}
+                    className="mb-4 w-full h-40 object-cover rounded"
+                  />
+                  <h2 className="text-xl font-bold">{project.name}</h2>
+                  <p className="text-gray-600 mb-4 flex-1 overflow-hidden text-ellipsis line-clamp-3">
+                    {project.description}
+                  </p>
+                  <button className="mt-4 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    Ver Detalles
+                  </button>
+                </div>
+              ))
+            : (
+              <p className="text-gray-600">No tienes proyectos aún.</p>
+            )}
+        </section>
       </main>
     </div>
   );

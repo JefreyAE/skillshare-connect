@@ -11,6 +11,7 @@ export default function Page() {
   const [full_name, setFull_name] = useState('');
   const [email, setEmail] = useState('');
   const [bio, setBio] = useState('');
+  const [linkedin, setLinkedin] = useState('');
 
   useEffect(() => {
     if (!loading && !user) {
@@ -24,7 +25,7 @@ export default function Page() {
     try {
       const { data, error } = await supabase
         .from('profiles')
-        .select('full_name, email, bio')
+        .select('full_name, email, bio, linkedin')
         .eq('id', user?.id)
         .single();
 
@@ -33,6 +34,7 @@ export default function Page() {
       setFull_name(data.full_name || '');
       setEmail(data.email || '');
       setBio(data.bio || '');
+      setLinkedin(data.linkedin || '');
     } catch (error: any) {
       console.error('Error al cargar el perfil:', error.message);
     }
@@ -44,7 +46,7 @@ export default function Page() {
     try {
       const { error } = await supabase
         .from('profiles')
-        .update({ full_name, email, bio })
+        .update({ full_name, email, bio, linkedin })
         .eq('id', user?.id);
 
       if (error) throw error;
@@ -107,6 +109,19 @@ export default function Page() {
                 className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
                 rows={4}
               ></textarea>
+            </div>
+
+            <div className="mt-6">
+              <label className="block text-gray-700 font-bold mb-2">
+                Perfil de LinkedIn
+              </label>
+              <input
+                type="url"
+                value={linkedin}
+                onChange={(e) => setLinkedin(e.target.value)}
+                className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
+                placeholder="https://www.linkedin.com/in/tu-perfil"
+              />
             </div>
 
             <button
