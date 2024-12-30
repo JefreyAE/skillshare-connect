@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { supabase } from '../../../../../services/supabase';
 import Navbar from '../../../../../components/Navbar';
+import { useAuth } from '../../../../../context/AuthContext';
 
 export default function ProjectDetail() {
   const params = useParams<{ id: string }>();
@@ -11,6 +12,7 @@ export default function ProjectDetail() {
 
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (id) {
@@ -99,14 +101,15 @@ export default function ProjectDetail() {
             )}
 
             {/* Botón para Volver */}
-            <div className="text-center">
+            {user ? ( <div className="text-center">
               <button
                 onClick={() => history.back()}
                 className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-all"
               >
                 Volver
               </button>
-            </div>
+            </div>) : (<></>)
+            }
           </div>
         </div>
       </div>

@@ -71,6 +71,14 @@ export default function Dashboard() {
                 Configuración
               </a>
             </li>
+            <li className="mb-4">
+              <Link
+                href={`/public/${user?.id}`}
+                className="block py-2 px-4 rounded hover:bg-gray-700"
+              >
+                Perfil Público
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className="p-4">
@@ -125,7 +133,7 @@ export default function Dashboard() {
                   <p className="text-gray-600 mb-4 flex-1 overflow-hidden text-ellipsis line-clamp-3">
                     {project.description.replace(/"/g, '&quot;')}
                   </p>
-                  <Link href={`/project/detail/${project.id}`} className="mt-4 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700">
+                  <Link href={`/project/detail/${project.id}`} className="mt-4 py-2 px-4 bg-blue-600 text-white text-center rounded hover:bg-blue-700">
                     Ver Detalles
                   </Link>
                 </div>

@@ -27,7 +27,7 @@ export default function Navbar() {
                 href={`/public/${user.id}`}
                 className="text-white hover:text-gray-300"
               >
-                Mi perfil
+                Perfil público
               </Link>
               <button
                 onClick={logout}
