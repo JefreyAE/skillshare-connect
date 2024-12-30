@@ -125,9 +125,9 @@ export default function Dashboard() {
                   <p className="text-gray-600 mb-4 flex-1 overflow-hidden text-ellipsis line-clamp-3">
                     {project.description}
                   </p>
-                  <button className="mt-4 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700">
+                  <Link href={`/project/detail/${project.id}`} className="mt-4 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700">
                     Ver Detalles
-                  </button>
+                  </Link>
                 </div>
               ))
             : (
