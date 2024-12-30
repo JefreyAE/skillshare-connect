@@ -87,7 +87,7 @@ export default function Dashboard() {
       <main className="flex-1 p-8">
         <header className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold">
-            Bienvenido, {profile?.full_name || "Cargando..."}
+            Bienvenido, {profile?.full_name.replace(/"/g, '&quot;') || "Cargando..."}
           </h1>
           <Link
             href={"/project/create"}
@@ -118,7 +118,7 @@ export default function Dashboard() {
                 >
                   <img
                     src={`https://payusyyavlpnktpzchzw.supabase.co/storage/v1/object/public/projects/${project.image_url}`}
-                    alt={project.name}
+                    alt={project.name.replace(/"/g, '&quot;')}
                     className="mb-4 w-full h-40 object-cover rounded"
                   />
                   <h2 className="text-xl font-bold">{project.name.replace(/"/g, '&quot;')}</h2>
