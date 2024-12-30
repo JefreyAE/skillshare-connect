@@ -121,9 +121,9 @@ export default function Dashboard() {
                     alt={project.name}
                     className="mb-4 w-full h-40 object-cover rounded"
                   />
-                  <h2 className="text-xl font-bold">{project.name}</h2>
+                  <h2 className="text-xl font-bold">{project.name.replace(/"/g, '&quot;')}</h2>
                   <p className="text-gray-600 mb-4 flex-1 overflow-hidden text-ellipsis line-clamp-3">
-                    {project.description}
+                    {project.description.replace(/"/g, '&quot;')}
                   </p>
                   <Link href={`/project/detail/${project.id}`} className="mt-4 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700">
                     Ver Detalles
